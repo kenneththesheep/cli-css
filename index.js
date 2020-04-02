@@ -95,12 +95,20 @@ if(process.argv.length===6)
     console.log(`\x1b[38;5;${Ansi}m%s\x1b[0m: `, rgbToHsl.rgbToHsl(firstNumber,secondNumber,thirdNumber));
     console.log(`\x1b[38;5;${Ansi}m%s\x1b[0m: `, rgbToHex.rgbToHex(firstNumber,secondNumber,thirdNumber));
 }
-
-// set as red//Coloring of bash does not work
-var r = 255;
-var b = 0;
-var g = 0;
-
-// this special console will create colored output
-//console.log(`\x1b[38;2;${r};${g};${b}m%s\x1b[0m`, 'myOutput');
-//console.log('\x1b[38;5;46m%s\x1b[0m: ', 'path');
+else
+    if(process.argv[2]==="hex")
+    {
+        console.log("test");
+        const readline = require('readline');
+        const fs = require('fs');
+        var myInterface=readline.createInterface({
+        input: fs.createReadStream('colors.txt')
+        });
+        const printData=(data)=>{
+            let Ansi= rgbToAnsi.rgbToAnsi256(hexToRgb.hexToRgb(data).r,hexToRgb.hexToRgb(data).g,hexToRgb.hexToRgb(data).b);
+        console.log(`Item: ${data}`);
+        console.log(`\x1b[38;5;${Ansi}m%s\x1b[0m: `,hexToRgb.hexToRgb(data));
+        console.log(`\x1b[38;5;${Ansi}m%s\x1b[0m: `,hexToHsl.hexToHsl(data));
+        };
+        myInterface.on('line', printData);
+    }

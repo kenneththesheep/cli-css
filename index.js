@@ -4,21 +4,32 @@
 //---------------------------------------///
 //---------------------------------------///
 //---------------------------------------///
-//---------Global Variables------------///
+//---------Section: Global Variables-------------///
+let firstNumber = 0;
+let secondNumber = 0;
+let thirdNumber = 0;
+//---------------------------------------///
+//---------------------------------------///
+//---------------------------------------///
+//---------------------------------------///
+//---------------------------------------///
+//---------------------------------------///
+//----Section: Function Number Conversion---------///
 
-let firstNumber=0;
-let secondNumber=0;
-let thirdNumber=0;
+const numberConversion = () =>  {
+                                firstNumber=parseInt(process.argv[3]);
+                                secondNumber=parseInt(process.argv[4]);
+                                thirdNumber=parseInt(process.argv[5]);
+                                }
+//---------------------------------------///
+//---------------------------------------///
+//---------------------------------------///
+//---------------------------------------///
+//---------------------------------------///
+//---------------------------------------///
+//---------Section: Function hex to RGB-----------///
 
-
-
-
-
-
-
-
-
-
+var hexToRgb = require('./hexToRgb.js');
 
 
 //---------------------------------------///
@@ -27,24 +38,9 @@ let thirdNumber=0;
 //---------------------------------------///
 //---------------------------------------///
 //---------------------------------------///
-//----Function Number Conversion---------///
+//---------Section: Function hex to hsl-----------///
 
-function numberConversion(numberInString) {
-    let interger=parseInt(numberInString);
-    return interger;
-}
-
-
-
-
-
-
-
-
-
-
-
-
+var hexToHsl = require('./hexToHsl.js');
 
 //---------------------------------------///
 //---------------------------------------///
@@ -52,23 +48,9 @@ function numberConversion(numberInString) {
 //---------------------------------------///
 //---------------------------------------///
 //---------------------------------------///
-//---------Function hex to RGB------------///
+//---------SectionL Function RGB to HEX------------///
 
-function hexToRgb(hex) {
-  var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-  return result ? {
-    r: parseInt(result[1], 16),
-    g: parseInt(result[2], 16),
-    b: parseInt(result[3], 16)
-  } : null;
-}
-
-
-
-
-
-
-
+var rgbToHex=require('./rgbToHex.js')
 
 //---------------------------------------///
 //---------------------------------------///
@@ -76,13 +58,9 @@ function hexToRgb(hex) {
 //---------------------------------------///
 //---------------------------------------///
 //---------------------------------------///
-//---------Function RGB to HEX------------///
+//---------SectionL Function RGB to HSL------------///
 
-function rgbToHex(r, g, b) {
-  return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
-}
-
-
+var rgbToHsl=require('./rgbToHsl.js')
 
 
 
@@ -93,13 +71,13 @@ function rgbToHex(r, g, b) {
 
 if(process.argv.length===3)
 {
-console.log(hexToRgb(process.argv[2]));
+console.log(hexToRgb.hexToRgb(process.argv[2]));
+console.log(hexToHsl.hexToHsl(process.argv[2]));
 }
 else
 if(process.argv.length===6)
 {
-    firstNumber=numberConversion(process.argv[3]);
-    secondNumber=numberConversion(process.argv[4]);
-    thirdNumber=numberConversion(process.argv[5]);
-    console.log(rgbToHex(firstNumber,secondNumber,thirdNumber));
+    numberConversion();
+    console.log(rgbToHex.rgbToHex(firstNumber,secondNumber,thirdNumber));
+    console.log(rgbToHsl.rgbToHsl(firstNumber,secondNumber,thirdNumber));
 }

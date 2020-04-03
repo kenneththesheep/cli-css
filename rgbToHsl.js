@@ -16,6 +16,6 @@ module.exports.rgbToHsl=(r, g, b)=>{
         h /= 6;
     }
 
-    return [Math.floor(h * 360), Math.floor(s * 100), Math.floor(l * 100)];
-//    return `h: ${Math.floor(h * 360)}, s: ${Math.floor(s * 100)}, l: ${Math.floor(l * 100)}`;
+    //return [Math.floor(h * 360), Math.floor(s * 100), Math.floor(l * 100)];
+return [Math.floor(h * 360), Math.floor(s * 100), Math.floor(l * 100)];
 }

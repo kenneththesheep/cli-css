@@ -27,7 +27,9 @@ module.exports.hexToHsl=hex=>{
     l = l*100;
     l = Math.round(l);
     h = Math.round(360*h);
- return `h: ${h} s: ${s} l: ${l}`;
+    //console.log("h"+h+"s"+s+"l"+l);
+ //return `h: ${h} s: ${s} l: ${l}`;
+ return [h,s,l]
 }
 //    var colorInHSL = 'hsl(' + h + ', ' + s + '%, ' + l + '%)';
 //    $rootScope.$emit('colorChanged', {colorInHSL});
